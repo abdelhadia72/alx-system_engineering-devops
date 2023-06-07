@@ -1,2 +1,2 @@
 #!/bin/bash
-0 string SCHOOL School data file
+file -m school.mgc --mime-type -F, --quote-name *
