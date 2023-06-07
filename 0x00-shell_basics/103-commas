@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -ma | sort -k1.1
+ls -map | sort -k1.1
