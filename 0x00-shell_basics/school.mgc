@@ -1,2 +1,2 @@
 #!/bin/bash
-file --mime-type -m !:mime SCHOOL*
+!:mime SCHOOL*
