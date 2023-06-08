@@ -1,2 +1,2 @@
 #!/bin/bash
-chmod 007  wow.txt
+chmod 007 hello 
