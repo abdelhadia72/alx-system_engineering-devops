@@ -1,3 +1,2 @@
 #!/bin/bash
-awk '{gsub(/ /,""); printf substr($0, 1, 1)}' <<< "$(command)"
-
+echo $(cut -c1 | tr -d " \n")
