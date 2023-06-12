@@ -1,2 +1,2 @@
 #!/bi/bash
-rev
+rev -c
