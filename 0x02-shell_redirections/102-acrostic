@@ -1,0 +1,3 @@
+#!/bin/bash
+awk '{gsub(/ /,""); printf substr($0, 1, 1)}' <<< "$(command)"
+
