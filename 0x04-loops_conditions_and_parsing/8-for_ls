@@ -2,5 +2,5 @@
 #scrpit list in dir (clearn list)
 
 for indir in *; do
-        echo "${indir#*-}"
+        echo "$indir" | cut -d '-' -f 2
 done
