@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# script that say bad luck from 3 countries
+
+i=1
+while [ $i -lt 21 ]
+do
+    case $i in
+        4)
+            echo $i
+            echo "bad luck from China"
+            ;;
+        8)
+            echo $i
+            echo "bad luck from Japan"
+            ;;
+        17)
+            echo $i
+            echo "bad luck from Italy"
+            ;;
+        *)
+            echo $i
+            ;;
+    esac
+    ((i++))
+done
