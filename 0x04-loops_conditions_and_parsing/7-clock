@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #script print 12h and 59m
+
 h=0
 m=0
 while [ $h -lt 12 ] || [ $m -lt 59 ]
