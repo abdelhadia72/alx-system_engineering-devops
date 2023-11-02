@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# listening sockets TCP UDP include show PID
+netstat -pl

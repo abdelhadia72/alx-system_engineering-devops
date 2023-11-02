@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Bash script that pings an IP address passed as an argument
+if [ -n "$1" ]; then
+  ping "$1"
+else
+  echo "Usage: $0 {IP_ADDRESS}"
+fi
