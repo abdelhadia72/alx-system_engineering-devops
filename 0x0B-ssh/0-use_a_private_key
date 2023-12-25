@@ -2,4 +2,4 @@
 
 SERVER_IP="54.159.1.198"
 
-ssh -i ~/.ssh/school ubuntu@$SERVER_IP 
+ssh -i ~/.ssh/school -l ubuntu ubuntu@$SERVER_IP 
