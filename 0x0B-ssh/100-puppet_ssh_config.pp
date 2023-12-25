@@ -1,14 +1,14 @@
 # config ssh via puppet 
-$curr_user = $facts['id']
-class { 'stdlib': }
 
-file_line { 'Turn off passwd auth':
-  path  => '/etc/ssh/sshd_config',
-  line  => 'PasswordAuthentication no',
-  match => '^#?PasswordAuthentication',
+class { 'ssh':
+  storeconfigs_enabled => false,
+  client_options      => {
+    'Host *' => {
+      'Port'       => 22,
+      'User'       => 'ubuntu',
+      'HostName'   => '54.159.1.198',
+      'IdentityFile' => '~/.ssh/school',
+    },
+  },
 }
 
-exec { 'Restart SSH service':
-  command     => 'sudo service ssh restart',
-  refreshonly => true,
-}
