@@ -3,6 +3,5 @@
 # your server using the private key ~/.ssh/school 
 # with the user ubuntu.
 
-
-
 ssh -i ~/.ssh/school ubuntu@54.159.1.198 
+
