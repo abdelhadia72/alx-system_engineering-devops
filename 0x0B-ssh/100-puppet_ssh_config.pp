@@ -1,14 +1,13 @@
 # config ssh via puppet 
 
-class { 'ssh':
-  storeconfigs_enabled => false,
-  client_options      => {
-    'Host *' => {
-      'Port'       => 22,
-      'User'       => 'ubuntu',
-      'HostName'   => '54.159.1.198',
-      'IdentityFile' => '~/.ssh/school',
-    },
-  },
+file_line { 'No PasswordAuthentication':
+  ensure => 'present',
+  path   => '/etc/ssh/ssh_config',
+  line   => '    PasswordAuthentication no',
 }
 
+file_line { 'File':
+  ensure => 'present',
+  path   => '/etc/ssh/ssh_config',
+  line   => '    IdentityFile ~/.ssh/school',
+}
