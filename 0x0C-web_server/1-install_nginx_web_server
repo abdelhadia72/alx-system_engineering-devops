@@ -4,7 +4,7 @@
 sudo apt update -y
 sudo apt install nginx -y
 sudo ufw allow 'Nginx HTTP'
-sudo chown -R $USER:$USER /var/www/html/index.nginx-debian.html
-sudo echo "Hello Wrold!" > index.nginx-debian.html
+sudo chown -R "$USER:$USER" /var/www/html/index.nginx-debian.html
+echo "Hello Wrold!" > index.nginx-debian.html
 sudo nginx
 
