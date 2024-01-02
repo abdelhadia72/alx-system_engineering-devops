@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Write a Bash script that transfers 
 # a file from our client to a server
 
