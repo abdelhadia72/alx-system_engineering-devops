@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+sudo apt-get update -y -qq
+sudo apt-get install nginx -y
+sudo service nginx start
+sudo ufw allow 'Nginx HTTP'
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
+cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
+echo -e "<!DOCTYPE html>\n<html>\n<head>\n\t<title>404 Not Found</title>\n</head>\n<body>\n\t<h1>404 Not Found</h1>\n\t<p>Ceci n'est pas une page</p>\n</body>\n</html>" > /var/www/html/404.html
+sudo sed -i '/server_name _;/a \\n\terror_page 404 /404.html;\n\tlocation = /404.html {\n\t\troot /var/www/html;\n\t\tinternal;\n\t}' /etc/nginx/sites-available/default
+sudo service nginx restart
+
