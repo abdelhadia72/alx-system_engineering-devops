@@ -1,0 +1,11 @@
+#!/bin/bash
+# configuration of our servers
+
+sudo apt-get update
+sudo apt-get install nginx -y
+
+sudo sed -i '/server_name _;/a \
+add_header X-Served-By $hostname;' /etc/nginx/sites-available/default
+
+sudo service nginx reload
+
