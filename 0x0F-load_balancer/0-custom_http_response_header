@@ -1,29 +1,13 @@
 #!/usr/bin/env bash
-# Install config server
+# replice the service
 
-apt-get update
-apt-get install -y nginx
-
-mkdir -p /var/www/html
-touch /var/www/html/index.html
-echo "Hello School!" > /var/www/html/index.html
-touch /var/www/html/404.html
-echo "Ceci n'est pas une page" > /var/www/html/404.html
-
-printf %s "server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-    add_header X-Served-By $HOSTNAME;
-    root   /var/www/html;
-    index  index.html index.htm;
-    location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=xJJsoquu70o/;
-    }
-    error_page 404 /404.html;
-    location /404 {
-      root /var/www/html;
-      internal;
-    }
-}" > /etc/nginx/sites-enabled/default
-
+sudo apt-get -y update
+sudo apt-get -y install nginx
+#sudo wget -q -O /etc/nginx/sites-available/default http://example.com/static/raw/nginx/ubuntu20.04/etc/nginx/sites-available/default
+path="/etc/nginx/sites-available/default"
+sudo sh -c "echo 'Hello World!' > /var/www/html/index.nginx-debian.html"
+sudo sed -i '/^}$/i \ \n\tlocation \/redirect_me {return 301 https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4;}' $path
+sudo sed -i '/^}$/i \ \n\tlocation @404 {return 404 "Ceci n'\''est pas une page\\n";}' $path
+sudo sed -i 's/=404/@404/g' $path
+sudo sed -i "0,/location \/ {/s/location \/ {/&\n\t\tadd_header X-Served-By '$HOSTNAME';/" $path
 sudo service nginx restart
