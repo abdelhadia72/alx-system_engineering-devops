@@ -1,40 +1,16 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# Takes a subdomain and a domain and returns information about the subdomain
 
-runDig() {
-    local subarg="$1"
-    local urlarg="$2"
-
-    dig "$subarg.$urlarg" | grep -A1 'ANSWER SECTION:' | tail -1 | awk -v s="$subarg" 'BEGIN { FS = " " } ; { print "The subdomain " s " is a " $4 " record and points to " $5 }'
+print_info () {
+    dig "$1" | grep -A1 'ANSWER SECTION:' | sed -r "s/$1./$2/g" | awk -F" " ' NR==2 { print "The subdomain " $1 " is a " $4 " record and points to " $5 }'
 }
 
-processSingleSubdomain() {
-    local url="$1"
-    local sub="$2"
-    runDig "$sub" "$url"
-}
-
-processAllSubdomains() {
-    local url="$1"
-    local allSubs=("www" "lb-01" "web-01" "web-02")
-
-    for s in "${allSubs[@]}"; do
-        runDig "$s" "$url"
-    done
-}
-
-main() {
-    if [ $# -eq 1 ]; then
-        local url="$1"
-        processAllSubdomains "$url"
-    elif [ $# -eq 2 ]; then
-        local url="$1"
-        local sub="$2"
-        processSingleSubdomain "$url" "$sub"
-    else
-        echo "Usage: $0 <url> [subdomain]"
-        exit 1
-    fi
-}
-
-main "$@"
-
+if [ "$#" -eq 2 ]
+then
+    print_info "$2.$1" "$2"
+else
+    print_info "www.$1" "www"
+    print_info "lb-01.$1" "lb-01"
+    print_info "web-01.$1" "web-01"
+    print_info "web-02.$1" "web-02"
+fi
