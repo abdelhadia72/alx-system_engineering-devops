@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+showinfo() {
+    local subarg="$1"
+    local urlarg="$2"
+
+    local result
+    result=$(dig "$subarg.$urlarg" +short)
+
+    local record_type
+    record_type=$(echo "$result" | awk '{print $1}')
+    local destination
+    destination=$(echo "$result" | awk '{print $2}')
+
+    echo "The subdomain $subarg is a ${record_type^^} record and points to $destination"
+}
+
+subdomains=("www" "lb-01" "web-01" "web-02")
+
+if [ $# -eq 1 ]; then
+    url="$1"
+    for sub in "${subdomains[@]}"; do
+        showinfo "$sub" "$url"
+    done
+elif [ $# -eq 2 ]; then
+    url="$1"
+    sub="$2"
+    showinfo "$sub" "$url"
+else
+    echo "Usage: $0 <domain> [subdomain]"
+    exit 1
+fi
+
