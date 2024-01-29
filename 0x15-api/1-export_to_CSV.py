@@ -7,9 +7,9 @@ Return:
     None
 """
 
+import os
 from requests import get
 from sys import argv
-import os
 
 if __name__ == "__main__":
     r1 = get('https://jsonplaceholder.typicode.com/todos/')
