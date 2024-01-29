@@ -29,13 +29,12 @@ def fetch_user_tasks(user_id):
     if os.path.exists(csv_filename):
         os.remove(csv_filename)
 
-    task = task.get("completed")
-    title = task.get("title")
-
     with open(csv_filename, "a", encoding="utf-8") as f:
         for task in tasks:
+            completed = task.get("completed")
+            title = task.get("title")
             if task.get("userId") == int(user_id):
-                f.write(f'"{user_id}","{username}","{task}","{title}"\n')
+                f.write(f'"{user_id}","{username}","{completed}","{title}"\n')
 
 
 if __name__ == "__main__":
