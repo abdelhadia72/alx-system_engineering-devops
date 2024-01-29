@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-""" 
-    fetch data tasks by the user id 
-    and display tasks completed/all 
+"""
+    fetch data tasks by the user id
+    and display tasks completed/all
     and who own this tasks
 """
 
@@ -31,7 +31,6 @@ if __name__ == "__main__":
                 all_tasks = all_tasks + 1
             else:
                 all_tasks = all_tasks + 1
-
 
     """ print out tasks by the user """
     print(
