@@ -1,10 +1,8 @@
 #!/usr/bin/python3
-"""
-Fetch data tasks by user ID and display
-completed/all tasks and the user's name.
 
-Usage:
-    python3 file.py <userId>
+"""
+Python script that, using a REST API, for a given employee ID,
+returns information about his/her TODO list progress.
 """
 
 import requests
