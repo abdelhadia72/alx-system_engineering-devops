@@ -33,9 +33,8 @@ def count_tasks(todos, user_id):
 
 def print_tasks(user_name, all_tasks, done_tasks, todos):
     """Print tasks completed by the user."""
-    print(
-        f"Employee {
-            user_name.get('name')} is done with tasks({done_tasks}/{all_tasks}):")
+    print(f"Employee {user_name.get('name')
+                      } is done with tasks({done_tasks}/{all_tasks}):")
     for task in todos:
         if task.get('userId') == user_id and task.get('completed'):
             print(f"\t{task.get('title')}")
@@ -51,4 +50,3 @@ if __name__ == "__main__":
     todos, user_name = fetch_tasks(user_id)
     all_tasks, done_tasks = count_tasks(todos, user_id)
     print_tasks(user_name, all_tasks, done_tasks, todos)
-d
