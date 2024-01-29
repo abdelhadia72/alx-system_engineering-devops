@@ -1,19 +1,11 @@
-"""
-This script exports user tasks from the JSONPlaceholder API to a CSV file.
-The script takes a user ID as a command-line argument and retrieves the tasks associated with that user.
-It then creates a CSV file with the following columns: "USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE".
-Each row in the CSV file represents a task associated with the specified user.
-
-Usage: python3 1-export_to_CSV.py [user_id]
-"""
-
-from requests import get
-from sys import argv
-import os
-
-# Rest of the code...
 #!/usr/bin/python3
 
+"""
+Keyword arguments:
+    user_id -- User ID to fetch tasks for
+Return:
+    None
+"""
 
 from requests import get
 from sys import argv
