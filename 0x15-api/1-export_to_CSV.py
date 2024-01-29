@@ -1,10 +1,8 @@
 #!/usr/bin/python3
-
 """
-Keyword arguments:
-    user_id -- User ID to fetch tasks for
-Return:
-    None
+Exports user tasks from JSONPlaceholder to
+CSV based on provided user ID.
+Usage: python3 1-export_to_CSV.py [user_id]
 """
 
 import os
