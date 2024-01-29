@@ -31,5 +31,5 @@ print(
     f"First line: Employee {
         user_name['name']} is done with tasks({done_tasks}/{all_tasks}):")
 for task in todos:
-    if task['userId'] == int(sys.argv[1]):
+    if task['userId'] == int(sys.argv[1]) and task['completed'] == True:
         print(task['title'])
