@@ -10,10 +10,11 @@ from sys import argv
 
 
 if __name__ == "__main__":
-    tasks = get('https://jsonplaceholder.typicode.com/todos/').json()
+    tasks = get('https://jsonplaceholder.typicode.com/todos/')
+    tasks = tasks.json()
     user_name = get(
-        f'https://jsonplaceholder.typicode.com/users/{argv[1]}').json()
-
+        f'https://jsonplaceholder.typicode.com/users/{argv[1]}')
+    user_name = user_name.json()
     done_tasks = 0
     all_tasks = 0
     list_of_tasks = []
