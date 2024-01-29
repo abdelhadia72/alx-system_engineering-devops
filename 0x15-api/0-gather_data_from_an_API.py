@@ -1,52 +1,34 @@
 #!/usr/bin/python3
-"""
-Fetch data tasks by user ID and display
-completed/all tasks and the user's name.
 
-Usage:
-    python3 file.py <userId>
+"""
+Python script that, using a REST API, for a given employee ID,
+returns information about his/her TODO list progress.
 """
 
-import requests
-import sys
+from requests import get
+from sys import argv
 
 
-def fetch_tasks(user_id):
-    """Fetch tasks from the API based on user ID."""
-    todos = requests.get('https://jsonplaceholder.typicode.com/todos').json()
-    user_name = requests.get(
-        f'https://jsonplaceholder.typicode.com/users/{user_id}').json()
-    return todos, user_name
+if __name__ == "__main__":
+    tasks = get('https://jsonplaceholder.typicode.com/todos/').json()
+    user_name = get(
+        f'https://jsonplaceholder.typicode.com/users/{argv[1]}').json()
 
-
-def count_tasks(todos, user_id):
-    """Count completed and all tasks for the user."""
-    all_tasks = 0
     done_tasks = 0
-    for task in todos:
-        if task.get('userId') == user_id:
-            if task.get('completed'):
+    all_tasks = 0
+    list_of_tasks = []
+
+    for task in tasks:
+        if task.get('userId') == int(argv[1]):
+            if (task.get('completed') is True):
+                list_of_tasks.append(task)
+                all_tasks += 1
                 done_tasks += 1
-            all_tasks += 1
-    return all_tasks, done_tasks
+            else:
+                all_tasks += 1
 
-
-def print_tasks(user_name, all_tasks, done_tasks, todos):
-    """Print tasks completed by the user."""
-    print(f"Employee {user_name.get('name')
+    print(f"Employee {user_name.get("name")
                       } is done with tasks({done_tasks}/{all_tasks}):")
-    for task in todos:
-        if task.get('userId') == user_id and task.get('completed'):
-            print(f"\t{task.get('title')}")
 
-
-if __name__ == '__main__':
-    """Check for argv."""
-    if len(sys.argv) != 2:
-        print('Usage: python3 file.py <userId>')
-        sys.exit(1)
-
-    user_id = int(sys.argv[1])
-    todos, user_name = fetch_tasks(user_id)
-    all_tasks, done_tasks = count_tasks(todos, user_id)
-    print_tasks(user_name, all_tasks, done_tasks, todos)
+    for task in list_of_tasks:
+        print(f"\t {task.get('title')}")
