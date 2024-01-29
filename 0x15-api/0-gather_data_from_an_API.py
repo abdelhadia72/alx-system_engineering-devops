@@ -10,26 +10,27 @@ from sys import argv
 
 
 if __name__ == "__main__":
-    tasks = get('https://jsonplaceholder.typicode.com/todos/')
-    tasks = tasks.json()
-    user_name = get(
-        f'https://jsonplaceholder.typicode.com/users/{argv[1]}')
-    user_name = user_name.json()
+    r1 = get('https://jsonplaceholder.typicode.com/todos/')
+    data = r1.json()
     done_tasks = 0
     all_tasks = 0
-    list_of_tasks = []
+    tasks = []
+    r1 = get('https://jsonplaceholder.typicode.com/users')
+    data2 = r1.json()
 
-    for task in tasks:
-        if task.get('userId') == int(argv[1]):
-            if (task.get('completed') is True):
-                list_of_tasks.append(task)
-                all_tasks += 1
+    for i in data2:
+        if i.get('id') == int(argv[1]):
+            user = i.get('name')
+
+    for i in data:
+        if i.get('userId') == int(argv[1]):
+            all_tasks += 1
+
+            if i.get('completed') is True:
                 done_tasks += 1
-            else:
-                all_tasks += 1
+                tasks.append(i.get('title'))
 
-    print(f"Employee {user_name.get("name")
-                      } is done with tasks({done_tasks}/{all_tasks}):")
+    print(f"Employee {user} is done with tasks({done_tasks}/{all_tasks}):")
 
-    for task in list_of_tasks:
-        print(f"\t {task.get('title')}")
+    for i in tasks:
+        print("\t {}".format(i))
