@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 """
-fetch data tasks by the user id
-and display tasks completed/all
-and who own this tasks
+Fetch data tasks by user ID and display
+completed/all tasks and the user's name.
+
+Usage:
+    python3 file.py <userId>
 """
 
 import requests
