@@ -6,26 +6,38 @@ Usage: python3 1-export_to_CSV.py [user_id]
 """
 
 import os
-from requests import get
+import requests
 from sys import argv
 
-if __name__ == "__main__":
-    r1 = get('https://jsonplaceholder.typicode.com/todos/')
-    tasks = r1.json()
-    username = ""
-    r1 = get(f'https://jsonplaceholder.typicode.com/users/')
-    users = r1.json()
 
-    if os.path.exists and os.path.isfile(f"{argv[1]}.csv"):
-        os.remove(f"{argv[1]}.csv")
+def fetch_user_tasks(user_id):
+    tasks_response = requests.get(
+        f'https://jsonplaceholder.typicode.com/todos/')
+    tasks = tasks_response.json()
 
-    for user in users:
-        if user.get("id") == int(argv[1]):
-            username = user.get("username")
-            break
+    users_response = requests.get(
+        f'https://jsonplaceholder.typicode.com/users/')
+    users = users_response.json()
 
-    with open(f"{argv[1]}.csv", "a", encoding="utf-8") as f:
+    username = next((user.get("username")
+                    for user in users if user.get("id") == int(user_id)), "")
+
+    csv_filename = f"{user_id}.csv"
+
+    if os.path.exists(csv_filename):
+        os.remove(csv_filename)
+
+    with open(csv_filename, "a", encoding="utf-8") as csv_file:
         for task in tasks:
-            if task.get("userId") == int(argv[1]):
-                f.write(f'"{argv[1]}","{username}","{
-                        task.get("completed")}","{task.get("title")}"\n')
+            if task.get("userId") == int(user_id):
+                csv_file.write(
+                    f'"{user_id}","{username}","{
+                        task.get("completed")}","{
+                        task.get("title")}"\n')
+
+
+if __name__ == "__main__":
+    if len(argv) != 2:
+        print("Usage: python3 1-export_to_CSV.py [user_id]")
+    else:
+        fetch_user_tasks(argv[1])
