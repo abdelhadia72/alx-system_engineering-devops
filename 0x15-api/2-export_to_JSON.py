@@ -5,10 +5,9 @@ Json file based on provided user ID.
 Usage: python3 1-export_to_JSON.py [user_id]
 """
 
-import os
-import json
 from requests import get
 from sys import argv
+import json
 
 
 def fetch_user_tasks(user_id):
