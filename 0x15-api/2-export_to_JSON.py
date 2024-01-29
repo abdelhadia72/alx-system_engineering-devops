@@ -9,6 +9,7 @@ from requests import get
 from sys import argv
 import json
 
+
 def fetch_user_tasks(user_id):
     tasks_res = get('https://jsonplaceholder.typicode.com/todos/')
     tasks = tasks_res.json()
@@ -34,9 +35,10 @@ def fetch_user_tasks(user_id):
             data[user_id].append(task_info)
 
     json_filename = f"{user_id}.json"
-    
+
     with open(json_filename, "w", encoding="utf-8") as json_file:
         json.dump(data, json_file)
+
 
 if __name__ == "__main__":
     if len(argv) != 2:
