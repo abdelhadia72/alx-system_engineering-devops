@@ -41,6 +41,7 @@ def print_tasks(user_name, all_tasks, done_tasks, todos):
 
 
 if __name__ == "__main__":
+
     """Check for argv."""
     if len(sys.argv) != 2:
         print('Usage: python3 file.py <userId>')
@@ -50,3 +51,4 @@ if __name__ == "__main__":
     todos, user_name = fetch_tasks(user_id)
     all_tasks, done_tasks = count_tasks(todos, user_id)
     print_tasks(user_name, all_tasks, done_tasks, todos)
+
