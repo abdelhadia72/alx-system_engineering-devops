@@ -1,5 +1,9 @@
 #!/usr/bin/python3
-""" Fetch a taks for user """
+""" 
+    fetch data tasks by the user id 
+    and display tasks completed/all 
+    and who own this tasks
+"""
 
 
 if __name__ == "__main__":
