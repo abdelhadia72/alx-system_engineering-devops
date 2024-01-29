@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """
-    fetch data tasks by the user id
-    and display tasks completed/all
-    and who own this tasks
+fetch data tasks by the user id
+and display tasks completed/all
+and who own this tasks
 """
 
 import requests
