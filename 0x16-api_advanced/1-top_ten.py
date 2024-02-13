@@ -4,6 +4,7 @@ import requests
 
 
 def top_ten(subreddit):
+    """Get top 10 subscribers"""
     req = requests.get(
         f"https://www.reddit.com/r/{subreddit}/hot.json",
         headers={},
