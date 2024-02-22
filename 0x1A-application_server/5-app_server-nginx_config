@@ -81,6 +81,10 @@ server {
           proxy_pass http://127.0.0.1:5003/2-hbnb;
    	}
 
+	  location /static {
+		proxy_pass http://127.0.0.1:5003;
+	}
+
 
 	# pass PHP scripts to FastCGI server
 	#
